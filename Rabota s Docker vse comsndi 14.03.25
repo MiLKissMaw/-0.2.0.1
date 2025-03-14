@@ -1,0 +1,181 @@
+u15@u15-VirtualBox:~$ docker search ubuntu
+NAME                             DESCRIPTION                                     STARS     OFFICIAL
+ubuntu                           Ubuntu is a Debian-based Linux operating sys…   17496     [OK]
+ubuntu/squid                     Squid is a caching proxy for the Web. Long-t…   107       
+ubuntu/nginx                     Nginx, a high-performance reverse proxy & we…   127       
+ubuntu/cortex                    Cortex provides storage for Prometheus. Long…   4         
+ubuntu/kafka                     Apache Kafka, a distributed event streaming …   53        
+ubuntu/prometheus                Prometheus is a systems and service monitori…   70        
+ubuntu/apache2                   Apache, a secure & extensible open-source HT…   90        
+ubuntu/bind9                     BIND 9 is a very flexible, full-featured DNS…   102       
+ubuntu/zookeeper                 ZooKeeper maintains configuration informatio…   13        
+ubuntu/mysql                     MySQL open source fast, stable, multi-thread…   67        
+ubuntu/postgres                  PostgreSQL is an open source object-relation…   41        
+ubuntu/redis                     Redis, an open source key-value store. Long-…   23        
+ubuntu/jre                       Distroless Java runtime based on Ubuntu. Lon…   19        
+ubuntu/dotnet-aspnet             Chiselled Ubuntu runtime image for ASP.NET a…   25        
+ubuntu/grafana                   Grafana, a feature rich metrics dashboard & …   12        
+ubuntu/dotnet-deps               Chiselled Ubuntu for self-contained .NET & A…   16        
+ubuntu/memcached                 Memcached, in-memory keyvalue store for smal…   5         
+ubuntu/cassandra                 Cassandra, an open source NoSQL distributed …   2         
+ubuntu/python                    A chiselled Ubuntu rock with the Python runt…   20        
+ubuntu/prometheus-alertmanager   Alertmanager handles client alerts from Prom…   9         
+ubuntu/dotnet-runtime            Chiselled Ubuntu runtime image for .NET apps…   20        
+ubuntu/mlflow                    MLFlow: for managing the machine learning li…   5         
+ubuntu/telegraf                  Telegraf collects, processes, aggregates & w…   4         
+ubuntu/loki                      Grafana Loki, a log aggregation system like …   2         
+ubuntu/chiselled-jre             [MOVED TO ubuntu/jre] Chiselled JRE: distrol…   3         
+u15@u15-VirtualBox:~$ docker pull <18.04
+bash: 18.04: Нет такого файла или каталога
+u15@u15-VirtualBox:~$ docker pull 18.04
+Using default tag: latest
+Error response from daemon: pull access denied for 18.04, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+u15@u15-VirtualBox:~$ docker pull <18.04>
+bash: синтаксическая ошибка рядом с неожиданным маркером «newline»
+u15@u15-VirtualBox:~$ docker pull 18
+Using default tag: latest
+Error response from daemon: pull access denied for 18, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+u15@u15-VirtualBox:~$ docker pull ubuntu:18.04
+18.04: Pulling from library/ubuntu
+7c457f213c76: Pull complete 
+Digest: sha256:152dc042452c496007f07ca9127571cb9c29697f42acbfad72324b2bb2e43c98
+Status: Downloaded newer image for ubuntu:18.04
+docker.io/library/ubuntu:18.04
+u15@u15-VirtualBox:~$ docker images -a
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+ubuntu       18.04     f9a80a55f492   21 months ago   63.2MB
+u15@u15-VirtualBox:~$ docker run -d f9a80a55f492
+6d6740ec294fd7f35c087252865c9b559c64b29a4863c8ec3bacad797b6eeb30
+u15@u15-VirtualBox:~$ docker run -it ubuntu:18.04
+root@8926a29ba400:/# pwd 
+/
+root@8926a29ba400:/# uname -a
+Linux 8926a29ba400 6.8.0-52-generic #53~22.04.1-Ubuntu SMP PREEMPT_DYNAMIC Wed Jan 15 19:18:46 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+root@8926a29ba400:/# exit
+u15@u15-VirtualBox:~$ docer ps -a
+Команда «docer» не найдена. Возможно, вы имели в виду:
+  команда 'docker' из snap-пакета docker (27.5.1)
+  команда 'docker' из deb-пакета docker.io (24.0.7-0ubuntu2~22.04.1)
+  команда 'docker' из deb-пакета podman-docker (3.4.4+ds1-1ubuntu1.22.04.2)
+См. 'snap info <имя_snap-пакета>', чтобы просмотреть дополнительные версии.
+u15@u15-VirtualBox:~$ docker ps -a
+CONTAINER ID   IMAGE          COMMAND       CREATED              STATUS                      PORTS     NAMES
+8926a29ba400   ubuntu:18.04   "/bin/bash"   About a minute ago   Exited (0) 22 seconds ago             stoic_napier
+6d6740ec294f   f9a80a55f492   "/bin/bash"   2 minutes ago        Exited (0) 2 minutes ago              relaxed_herschel
+u15@u15-VirtualBox:~$ docker run -it oraclelinux
+Unable to find image 'oraclelinux:latest' locally
+docker: Error response from daemon: manifest for oraclelinux:latest not found: manifest unknown: manifest unknown
+
+Run 'docker run --help' for more information
+u15@u15-VirtualBox:~$ docker run -it oraclelinux:18.04
+Unable to find image 'oraclelinux:18.04' locally
+docker: Error response from daemon: manifest for oraclelinux:18.04 not found: manifest unknown: manifest unknown
+
+Run 'docker run --help' for more information
+u15@u15-VirtualBox:~$ docker run -it oraclelinux
+Unable to find image 'oraclelinux:latest' locally
+docker: Error response from daemon: manifest for oraclelinux:latest not found: manifest unknown: manifest unknown
+
+Run 'docker run --help' for more information
+u15@u15-VirtualBox:~$ docker run -it oraclelinux:
+docker: invalid reference format
+
+Run 'docker run --help' for more information
+u15@u15-VirtualBox:~$ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED         SIZE
+ubuntu       18.04     f9a80a55f492   21 months ago   63.2MB
+u15@u15-VirtualBox:~$ docker search -a
+^[[A^[[unknown shorthand flag: 'a' in -a
+
+Usage:  docker search [OPTIONS] TERM
+
+Run 'docker search --help' for more information
+u15@u15-VirtualBox:~$ docker search oraclelinux
+NAME                          DESCRIPTION                                     STARS     OFFICIAL
+oraclelinux                   Official Docker builds of Oracle Linux.         1089      [OK]
+litmusimage/oraclelinux                                                       1         
+amd64/oraclelinux             Official Docker builds of Oracle Linux.         1         
+arm64v8/oraclelinux           Official Docker builds of Oracle Linux.         5         
+trollin/oraclelinux                                                           0         
+fispact/oraclelinux           Automated build of Oracle Linux images with …   0         
+buluma/oraclelinux            Docker builds of Oracle Linux Tests             1         
+essentialkaos/oraclelinux     Dockerfiles for the latest versions of Oracl…   0         
+madroxdockerhub/oraclelinux                                                   0         
+robertdebock/oraclelinux      Container to test Ansible roles in, includin…   0         
+pvtesting/oraclelinux                                                         0         
+tahoelafsci/oraclelinux                                                       0         
+ambisht/oraclelinux           oracle linux docker image with almost major …   0         
+rkudache31/oraclelinux        Linux related docker image                      0         
+golovanovsv/oraclelinux       Repository with oraclelinux image for ansibl…   0         
+ucdgt/oraclelinux             oracel linux                                    0         
+apiaryio/oraclelinux                                                          0         
+stackbrew/oraclelinux         Deprecated; use 'oraclelinux' from https://h…   0         
+kaushal9808/oraclelinux                                                       0         
+ozasaurabh/oraclelinux                                                        0         
+silvionetto/oraclelinux       Oracle Linux                                    1         
+huhgawz/oraclelinux           Dockerized Oracle Linux with extra packages     0         
+itmodit/oraclelinux                                                           0         
+hnamaizawa/oraclelinux                                                        0         
+pgpro/oraclelinux                                                             0         
+u15@u15-VirtualBox:~$ docker pull oraclelinux
+Using default tag: latest
+Error response from daemon: manifest for oraclelinux:latest not found: manifest unknown: manifest unknown
+u15@u15-VirtualBox:~$ docker pull httpd
+Using default tag: latest
+latest: Pulling from library/httpd
+7cf63256a31a: Pull complete 
+d2f10b557009: Pull complete 
+4f4fb700ef54: Pull complete 
+38fd0d422c41: Pull complete 
+470035b3d48f: Pull complete 
+fdebd6c6e1b2: Pull complete 
+Digest: sha256:10381816bb7e60ae3a9db3784f2966a8910b6ff07c4da54bd2d62d2671c8ab6e
+Status: Downloaded newer image for httpd:latest
+docker.io/library/httpd:latest
+u15@u15-VirtualBox:~$ docker pull oraclelinux
+Using default tag: latest
+Error response from daemon: manifest for oraclelinux:latest not found: manifest unknown: manifest unknown
+u15@u15-VirtualBox:~$ docker pull drupal
+Using default tag: latest
+latest: Pulling from library/drupal
+7cf63256a31a: Already exists 
+02aa0bfe816b: Pull complete 
+8929067778be: Pull complete 
+063974348ccd: Pull complete 
+f26f1ad6e54d: Pull complete 
+a97035320663: Pull complete 
+55a6d997f013: Pull complete 
+be1b093a2245: Pull complete 
+3acaaa0d0c5b: Pull complete 
+0e837c2fac70: Pull complete 
+aecd72a519c7: Pull complete 
+7f47c5f800b7: Pull complete 
+1db31e85631a: Pull complete 
+4f4fb700ef54: Pull complete 
+eb95d85d9c13: Pull complete 
+256021636159: Pull complete 
+b2f19bee0bed: Pull complete 
+7dc199cf18af: Pull complete 
+2548765124dd: Pull complete 
+Digest: sha256:417681429bbcf4aabf2f3a56259edcead03417dc510442c11f7bafe30007f551
+Status: Downloaded newer image for drupal:latest
+docker.io/library/drupal:latest
+u15@u15-VirtualBox:~$ docker run -it httpd
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+AH00558: httpd: Could not reliably determine the server's fully qualified domain name, using 172.17.0.2. Set the 'ServerName' directive globally to suppress this message
+[Fri Mar 14 05:55:48.075508 2025] [mpm_event:notice] [pid 1:tid 1] AH00489: Apache/2.4.63 (Unix) configured -- resuming normal operations
+[Fri Mar 14 05:55:48.091477 2025] [core:notice] [pid 1:tid 1] AH00094: Command line: 'httpd -D FOREGROUND'
+^C[Fri Mar 14 05:57:49.994073 2025] [mpm_event:notice] [pid 1:tid 1] AH00491: caught SIGTERM, shutting down
+
+u15@u15-VirtualBox:~$ docker pull oraclelinux:8.10
+8.10: Pulling from library/oraclelinux
+e3976b871425: Pull complete 
+Digest: sha256:d9517e138b6fbd7ff7abe2eb6a5eaf87bc83695af6cb98cb60b36a260d607c05
+Status: Downloaded newer image for oraclelinux:8.10
+docker.io/library/oraclelinux:8.10
+u15@u15-VirtualBox:~$ docker ps -a
+CONTAINER ID   IMAGE          COMMAND              CREATED          STATUS                          PORTS     NAMES
+4814117c37f2   httpd          "httpd-foreground"   3 minutes ago    Exited (0) About a minute ago             jolly_bassi
+8926a29ba400   ubuntu:18.04   "/bin/bash"          18 minutes ago   Exited (0) 17 minutes ago                 stoic_napier
+6d6740ec294f   f9a80a55f492   "/bin/bash"          19 minutes ago   Exited (0) 19 minutes ago                 relaxed_herschel
+u15@u15-VirtualBox:~$ 
