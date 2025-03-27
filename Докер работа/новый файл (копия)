@@ -1,0 +1,263 @@
+@MiLKissMaw ➜ /workspaces/-0.2.0.1 (main) $ docker commit -m "Обновлен контейнер apt update, apt upgrade, apt install iproute2, apt install iputils-ping" -a " Milkiss " 07d0561a23ed 
+Milk:1 
+invalid reference format: repository name (library/Milk) must be lowercase
+@MiLKissMaw ➜ /workspaces/-0.2.0.1 (main) $ docker commit -m "Обновлен контейнер apt update, apt upgrade, apt install iproute2, apt install iputils-ping" -a " Milkiss " 07d0561a23ed milk:1 
+sha256:5b786d9c1fea7f05e1a7a8d2d75ad28d203fa4b35c1453c0ab6a44a1b307da68
+@MiLKissMaw ➜ /workspaces/-0.2.0.1 (main) $ docker images
+REPOSITORY   TAG       IMAGE ID       CREATED          SIZE
+milk         1         5b786d9c1fea   13 seconds ago   202MB
+ubuntu       20.04     6013ae1a63c2   5 months ago     72.8MB
+@MiLKissMaw ➜ /workspaces/-0.2.0.1 (main) $ docker history milk:1
+IMAGE          CREATED              CREATED BY                                      SIZE      COMMENT
+5b786d9c1fea   About a minute ago   /bin/bash                                       129MB     Обновлен контейнер apt update, apt upgrade, apt install iproute2, apt install iputils-ping
+6013ae1a63c2   5 months ago         /bin/sh -c #(nop)  CMD ["/bin/bash"]            0B        
+<missing>      5 months ago         /bin/sh -c #(nop) ADD file:7486147a645d8835a…   72.8MB    
+<missing>      5 months ago         /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B        
+<missing>      5 months ago         /bin/sh -c #(nop)  LABEL org.opencontainers.…   0B        
+<missing>      5 months ago         /bin/sh -c #(nop)  ARG LAUNCHPAD_BUILD_ARCH     0B        
+<missing>      5 months ago         /bin/sh -c #(nop)  ARG RELEASE                  0B        
+@MiLKissMaw ➜ /workspaces/-0.2.0.1 (main) $ docker inspect milk:1
+[
+    {
+        "Id": "sha256:5b786d9c1fea7f05e1a7a8d2d75ad28d203fa4b35c1453c0ab6a44a1b307da68",
+        "RepoTags": [
+            "milk:1"
+        ],
+        "RepoDigests": [],
+        "Parent": "sha256:6013ae1a63c2ee58a8949f03c6366a3ef6a2f386a7db27d86de2de965e9f450b",
+        "Comment": "Обновлен контейнер apt update, apt upgrade, apt install iproute2, apt install iputils-ping",
+        "Created": "2025-03-20T06:45:29.814407882Z",
+        "DockerVersion": "27.3.1-1",
+        "Author": " Milkiss ",
+        "Config": {
+            "Hostname": "07d0561a23ed",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": true,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": true,
+            "OpenStdin": true,
+            "StdinOnce": true,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "/bin/bash"
+            ],
+            "Image": "6013ae1a63c2",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "20.04"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 201733434,
+        "GraphDriver": {
+            "Data": {
+                "LowerDir": "/var/lib/docker/overlay2/bbd526ba19cf77f1db63c4ed7dd6c54718596d15e9a15e54311001c3d78f8e17/diff",
+                "MergedDir": "/var/lib/docker/overlay2/9aaebdc99ba11e9b08213603033183a6d2eaba11f47f70b0a56b2d8b18139919/merged",
+                "UpperDir": "/var/lib/docker/overlay2/9aaebdc99ba11e9b08213603033183a6d2eaba11f47f70b0a56b2d8b18139919/diff",
+                "WorkDir": "/var/lib/docker/overlay2/9aaebdc99ba11e9b08213603033183a6d2eaba11f47f70b0a56b2d8b18139919/work"
+            },
+            "Name": "overlay2"
+        },
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:fffe76c64ef2dee2d80a8bb3ad13d65d596d04a45510b1956a976a69215dae92",
+                "sha256:6bf1f9c0aea7abb347e7a77c658d3485f8f7069ba22bd802ce1c82d606c1b6c3"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2025-03-20T06:45:29.828161803Z"
+        }
+    }
+]
+@MiLKissMaw ➜ /workspaces/-0.2.0.1 (main) $ docker run -it milk:1 
+root@95fdc60ee693:/# apt install mysql-client
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  mysql-client-8.0 mysql-client-core-8.0 mysql-common
+The following NEW packages will be installed:
+  mysql-client mysql-client-8.0 mysql-client-core-8.0 mysql-common
+0 upgraded, 4 newly installed, 0 to remove and 0 not upgraded.
+Need to get 5123 kB of archives.
+After this operation, 74.7 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client-core-8.0 amd64 8.0.41-0ubuntu0.20.04.1 [5085 kB]
+Get:2 http://archive.ubuntu.com/ubuntu focal/main amd64 mysql-common all 5.8+1.0.5ubuntu2 [7496 B]
+Get:3 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client-8.0 amd64 8.0.41-0ubuntu0.20.04.1 [22.0 kB]
+Get:4 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 mysql-client all 8.0.41-0ubuntu0.20.04.1 [9368 B]
+Fetched 5123 kB in 0s (39.2 MB/s)           
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package mysql-client-core-8.0.
+(Reading database ... 6427 files and directories currently installed.)
+Preparing to unpack .../mysql-client-core-8.0_8.0.41-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking mysql-client-core-8.0 (8.0.41-0ubuntu0.20.04.1) ...
+Selecting previously unselected package mysql-common.
+Preparing to unpack .../mysql-common_5.8+1.0.5ubuntu2_all.deb ...
+Unpacking mysql-common (5.8+1.0.5ubuntu2) ...
+Selecting previously unselected package mysql-client-8.0.
+Preparing to unpack .../mysql-client-8.0_8.0.41-0ubuntu0.20.04.1_amd64.deb ...
+Unpacking mysql-client-8.0 (8.0.41-0ubuntu0.20.04.1) ...
+Selecting previously unselected package mysql-client.
+Preparing to unpack .../mysql-client_8.0.41-0ubuntu0.20.04.1_all.deb ...
+Unpacking mysql-client (8.0.41-0ubuntu0.20.04.1) ...
+Setting up mysql-common (5.8+1.0.5ubuntu2) ...
+update-alternatives: using /etc/mysql/my.cnf.fallback to provide /etc/mysql/my.cnf (my.cnf) in auto mode
+Setting up mysql-client-core-8.0 (8.0.41-0ubuntu0.20.04.1) ...
+Setting up mysql-client-8.0 (8.0.41-0ubuntu0.20.04.1) ...
+Setting up mysql-client (8.0.41-0ubuntu0.20.04.1) ...
+root@95fdc60ee693:/# apt install postgresql-client
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following additional packages will be installed:
+  libasn1-8-heimdal libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal
+  libheimntlm0-heimdal libhx509-5-heimdal libkrb5-26-heimdal libldap-2.4-2 libldap-common
+  libpq5 libreadline8 libroken18-heimdal libsasl2-2 libsasl2-modules libsasl2-modules-db
+  libsqlite3-0 libwind0-heimdal netbase postgresql-client-12 postgresql-client-common
+  readline-common
+Suggested packages:
+  libsasl2-modules-gssapi-mit | libsasl2-modules-gssapi-heimdal libsasl2-modules-ldap
+  libsasl2-modules-otp libsasl2-modules-sql postgresql-12 postgresql-doc-12 readline-doc
+The following NEW packages will be installed:
+  libasn1-8-heimdal libgssapi3-heimdal libhcrypto4-heimdal libheimbase1-heimdal
+  libheimntlm0-heimdal libhx509-5-heimdal libkrb5-26-heimdal libldap-2.4-2 libldap-common
+  libpq5 libreadline8 libroken18-heimdal libsasl2-2 libsasl2-modules libsasl2-modules-db
+  libsqlite3-0 libwind0-heimdal netbase postgresql-client postgresql-client-12
+  postgresql-client-common readline-common
+0 upgraded, 22 newly installed, 0 to remove and 0 not upgraded.
+Need to get 3068 kB of archives.
+After this operation, 10.8 MB of additional disk space will be used.
+Do you want to continue? [Y/n] y
+Get:1 http://archive.ubuntu.com/ubuntu focal/main amd64 readline-common all 8.0-4 [53.5 kB]
+Get:2 http://archive.ubuntu.com/ubuntu focal/main amd64 libreadline8 amd64 8.0-4 [131 kB]
+Get:3 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsqlite3-0 amd64 3.31.1-4ubuntu0.6 [549 kB]
+Get:4 http://archive.ubuntu.com/ubuntu focal/main amd64 netbase all 6.1 [13.1 kB]
+Get:5 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libroken18-heimdal amd64 7.7.0+dfsg-1ubuntu1.4 [42.5 kB]
+Get:6 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libasn1-8-heimdal amd64 7.7.0+dfsg-1ubuntu1.4 [181 kB]
+Get:7 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libheimbase1-heimdal amd64 7.7.0+dfsg-1ubuntu1.4 [30.4 kB]
+Get:8 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libhcrypto4-heimdal amd64 7.7.0+dfsg-1ubuntu1.4 [88.1 kB]
+Get:9 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libwind0-heimdal amd64 7.7.0+dfsg-1ubuntu1.4 [47.7 kB]
+Get:10 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libhx509-5-heimdal amd64 7.7.0+dfsg-1ubuntu1.4 [107 kB]
+Get:11 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libkrb5-26-heimdal amd64 7.7.0+dfsg-1ubuntu1.4 [207 kB]
+Get:12 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libheimntlm0-heimdal amd64 7.7.0+dfsg-1ubuntu1.4 [15.1 kB]
+Get:13 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libgssapi3-heimdal amd64 7.7.0+dfsg-1ubuntu1.4 [96.5 kB]
+Get:14 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsasl2-modules-db amd64 2.1.27+dfsg-2ubuntu0.1 [14.7 kB]
+Get:15 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsasl2-2 amd64 2.1.27+dfsg-2ubuntu0.1 [49.3 kB]
+Get:16 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libldap-common all 2.4.49+dfsg-2ubuntu1.10 [16.5 kB]
+Get:17 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libldap-2.4-2 amd64 2.4.49+dfsg-2ubuntu1.10 [155 kB]
+Get:18 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libpq5 amd64 12.22-0ubuntu0.20.04.2 [118 kB]
+Get:19 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 libsasl2-modules amd64 2.1.27+dfsg-2ubuntu0.1 [48.8 kB]
+Get:20 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 postgresql-client-common all 214ubuntu0.1 [28.2 kB]
+Get:21 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 postgresql-client-12 amd64 12.22-0ubuntu0.20.04.2 [1073 kB]
+Get:22 http://archive.ubuntu.com/ubuntu focal-updates/main amd64 postgresql-client all 12+214ubuntu0.1 [3940 B]
+Fetched 3068 kB in 0s (21.6 MB/s)               
+debconf: delaying package configuration, since apt-utils is not installed
+Selecting previously unselected package readline-common.
+(Reading database ... 6481 files and directories currently installed.)
+Preparing to unpack .../00-readline-common_8.0-4_all.deb ...
+Unpacking readline-common (8.0-4) ...
+Selecting previously unselected package libreadline8:amd64.
+Preparing to unpack .../01-libreadline8_8.0-4_amd64.deb ...
+Unpacking libreadline8:amd64 (8.0-4) ...
+Selecting previously unselected package libsqlite3-0:amd64.
+Preparing to unpack .../02-libsqlite3-0_3.31.1-4ubuntu0.6_amd64.deb ...
+Unpacking libsqlite3-0:amd64 (3.31.1-4ubuntu0.6) ...
+Selecting previously unselected package netbase.
+Preparing to unpack .../03-netbase_6.1_all.deb ...
+Unpacking netbase (6.1) ...
+Selecting previously unselected package libroken18-heimdal:amd64.
+Preparing to unpack .../04-libroken18-heimdal_7.7.0+dfsg-1ubuntu1.4_amd64.deb ...
+Unpacking libroken18-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Selecting previously unselected package libasn1-8-heimdal:amd64.
+Preparing to unpack .../05-libasn1-8-heimdal_7.7.0+dfsg-1ubuntu1.4_amd64.deb ...
+Unpacking libasn1-8-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Selecting previously unselected package libheimbase1-heimdal:amd64.
+Preparing to unpack .../06-libheimbase1-heimdal_7.7.0+dfsg-1ubuntu1.4_amd64.deb ...
+Unpacking libheimbase1-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Selecting previously unselected package libhcrypto4-heimdal:amd64.
+Preparing to unpack .../07-libhcrypto4-heimdal_7.7.0+dfsg-1ubuntu1.4_amd64.deb ...
+Unpacking libhcrypto4-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Selecting previously unselected package libwind0-heimdal:amd64.
+Preparing to unpack .../08-libwind0-heimdal_7.7.0+dfsg-1ubuntu1.4_amd64.deb ...
+Unpacking libwind0-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Selecting previously unselected package libhx509-5-heimdal:amd64.
+Preparing to unpack .../09-libhx509-5-heimdal_7.7.0+dfsg-1ubuntu1.4_amd64.deb ...
+Unpacking libhx509-5-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Selecting previously unselected package libkrb5-26-heimdal:amd64.
+Preparing to unpack .../10-libkrb5-26-heimdal_7.7.0+dfsg-1ubuntu1.4_amd64.deb ...
+Unpacking libkrb5-26-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Selecting previously unselected package libheimntlm0-heimdal:amd64.
+Preparing to unpack .../11-libheimntlm0-heimdal_7.7.0+dfsg-1ubuntu1.4_amd64.deb ...
+Unpacking libheimntlm0-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Selecting previously unselected package libgssapi3-heimdal:amd64.
+Preparing to unpack .../12-libgssapi3-heimdal_7.7.0+dfsg-1ubuntu1.4_amd64.deb ...
+Unpacking libgssapi3-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Selecting previously unselected package libsasl2-modules-db:amd64.
+Preparing to unpack .../13-libsasl2-modules-db_2.1.27+dfsg-2ubuntu0.1_amd64.deb ...
+Unpacking libsasl2-modules-db:amd64 (2.1.27+dfsg-2ubuntu0.1) ...
+Selecting previously unselected package libsasl2-2:amd64.
+Preparing to unpack .../14-libsasl2-2_2.1.27+dfsg-2ubuntu0.1_amd64.deb ...
+Unpacking libsasl2-2:amd64 (2.1.27+dfsg-2ubuntu0.1) ...
+Selecting previously unselected package libldap-common.
+Preparing to unpack .../15-libldap-common_2.4.49+dfsg-2ubuntu1.10_all.deb ...
+Unpacking libldap-common (2.4.49+dfsg-2ubuntu1.10) ...
+Selecting previously unselected package libldap-2.4-2:amd64.
+Preparing to unpack .../16-libldap-2.4-2_2.4.49+dfsg-2ubuntu1.10_amd64.deb ...
+Unpacking libldap-2.4-2:amd64 (2.4.49+dfsg-2ubuntu1.10) ...
+Selecting previously unselected package libpq5:amd64.
+Preparing to unpack .../17-libpq5_12.22-0ubuntu0.20.04.2_amd64.deb ...
+Unpacking libpq5:amd64 (12.22-0ubuntu0.20.04.2) ...
+Selecting previously unselected package libsasl2-modules:amd64.
+Preparing to unpack .../18-libsasl2-modules_2.1.27+dfsg-2ubuntu0.1_amd64.deb ...
+Unpacking libsasl2-modules:amd64 (2.1.27+dfsg-2ubuntu0.1) ...
+Selecting previously unselected package postgresql-client-common.
+Preparing to unpack .../19-postgresql-client-common_214ubuntu0.1_all.deb ...
+Unpacking postgresql-client-common (214ubuntu0.1) ...
+Selecting previously unselected package postgresql-client-12.
+Preparing to unpack .../20-postgresql-client-12_12.22-0ubuntu0.20.04.2_amd64.deb ...
+Unpacking postgresql-client-12 (12.22-0ubuntu0.20.04.2) ...
+Selecting previously unselected package postgresql-client.
+Preparing to unpack .../21-postgresql-client_12+214ubuntu0.1_all.deb ...
+Unpacking postgresql-client (12+214ubuntu0.1) ...
+Setting up libsqlite3-0:amd64 (3.31.1-4ubuntu0.6) ...
+Setting up libsasl2-modules:amd64 (2.1.27+dfsg-2ubuntu0.1) ...
+Setting up libldap-common (2.4.49+dfsg-2ubuntu1.10) ...
+Setting up libsasl2-modules-db:amd64 (2.1.27+dfsg-2ubuntu0.1) ...
+Setting up libsasl2-2:amd64 (2.1.27+dfsg-2ubuntu0.1) ...
+Setting up libroken18-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Setting up netbase (6.1) ...
+Setting up readline-common (8.0-4) ...
+Setting up libheimbase1-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Setting up postgresql-client-common (214ubuntu0.1) ...
+Setting up libasn1-8-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Setting up libreadline8:amd64 (8.0-4) ...
+Setting up libhcrypto4-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Setting up libwind0-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Setting up libhx509-5-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Setting up libkrb5-26-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Setting up libheimntlm0-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Setting up libgssapi3-heimdal:amd64 (7.7.0+dfsg-1ubuntu1.4) ...
+Setting up libldap-2.4-2:amd64 (2.4.49+dfsg-2ubuntu1.10) ...
+Setting up libpq5:amd64 (12.22-0ubuntu0.20.04.2) ...
+Setting up postgresql-client-12 (12.22-0ubuntu0.20.04.2) ...
+update-alternatives: using /usr/share/postgresql/12/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
+Setting up postgresql-client (12+214ubuntu0.1) ...
+Processing triggers for libc-bin (2.31-0ubuntu9.17) ...
+root@95fdc60ee693:/# exit
+@MiLKissMaw ➜ /workspaces/-0.2.0.1 (main) $ docker commit -m "Обновлен контейнер apt update, apt upgrade, apt install iproute2, apt install iputils-ping" -a " Milkiss " 95fdc60ee693 
+ Milk:2
+invalid reference format: repository name (library/Milk) must be lowercase
+@MiLKissMaw ➜ /workspaces/-0.2.0.1 (main) $ docker commit -m "Обновлен контейнер apt update, apt upgrade, apt install iproute2, apt install iputils-ping" -a " Milkiss " 95fdc60ee693  milk:2
+sha256:a2e893409d0d66cd58d9c2df461882b20a272b02c4f885723bba9431c255fdee
+@MiLKissMaw ➜ /workspaces/-0.2.0.1 (main) $ 
