@@ -1,0 +1,841 @@
+u14@u14-VirtualBox:~$ docker exec cont1 ip a
+Error response from daemon: No such container: cont1
+u14@u14-VirtualBox:~$ docker network connect host cont_172_17
+Error response from daemon: No such container: cont_172_17
+u14@u14-VirtualBox:~$ docker ls
+docker: unknown command: docker ls
+
+Run 'docker --help' for more information
+u14@u14-VirtualBox:~$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+65a5c2fffc33   bridge    bridge    local
+f0183acd48fd   host      host      local
+6bc6739948a0   none      null      local
+u14@u14-VirtualBox:~$ docker network inspect my_bridge
+[]
+Error response from daemon: network my_bridge not found
+u14@u14-VirtualBox:~$ docker pull cont1
+Using default tag: latest
+Error response from daemon: pull access denied for cont1, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+u14@u14-VirtualBox:~$ docker run -it cont1
+Unable to find image 'cont1:latest' locally
+docker: Error response from daemon: pull access denied for cont1, repository does not exist or may require 'docker login': denied: requested access to the resource is denied
+
+Run 'docker run --help' for more information
+u14@u14-VirtualBox:~$ docker system prune
+WARNING! This will remove:
+  - all stopped containers
+  - all networks not used by at least one container
+  - all dangling images
+  - unused build cache
+
+Are you sure you want to continue? [y/N] y
+Deleted Containers:
+7a3f90dadde7caeaa6efd3b1e59e335166fee9f7bb9b4952f18dc9c4d5b3fb6a
+7350f145b83b57e0e736973089818554f6a767ee05f1c6fed0348bbf90a94713
+ec3585dd83fa8f3322aa82d397ce0c2aea6abdcd2868ce7bd7e9c152eb6b6c47
+82c72a7ab6a0224389aef6487c6a9e22ab650cec97e9dadbbf7b54c7f6361f38
+f109cb0e58604d86d4365aa38a39a0ba3891c5d8dfd7239aa37e8a622960a509
+5e8d9d294bb5a745d88af5d9c3d0bd690039279035c94313b962d31c348e52b4
+b9c6fd263a1e9fdea319bc00abc7965257d2fd87e81ce0f0fb810c2f0ff8d7a2
+d846acd20425c7688d15bebb6c5a90216c71470991a12bef6d9bb124f9ecbcad
+a4669ec998f3295b16682b1744a174eba22bca004fa870b8319172a7d07e27a1
+a6eeb685868a347b6422286e9f1815cc921b7c65da2ec19ef17b0edd02a98a96
+66b7570e8eb1f043b79e7113e3c70ab263549ee2769c352f94a18a84ffc947b0
+e9ef5de8593ae78046a38a9d0e50ff06f6019984c56c41d3e9dd674581f8d113
+49702448ea6ab52a9c3946a6fa94ac850fb5e07bfd2c446ce821ab7229883227
+e37e3a09f22c4ab4f947bc9c9a8aa01fec99c3fa7627dc34718702649d5d358b
+9dc4b4bf9f21ca8a0753307f570dd1b6fc475703aab86423d9cb3cc836f0ad94
+0bf3eeb201df7446f69efaa1c4581d92f38fdd0893c66b73230400ff2c030fdb
+
+Deleted build cache objects:
+p2mebrdyr6f9g87e3egljiyqq
+
+Total reclaimed space: 138B
+u14@u14-VirtualBox:~$ docker network create --driver bridge --subnet=44.0.0.0/24subnet44
+docker: 'docker network create' requires 1 argument
+
+Usage:  docker network create [OPTIONS] NETWORK
+
+Run 'docker network create --help' for more information
+u14@u14-VirtualBox:~$ docker network create --driver=bridge --subnet=192.168.44.0/24 --gateway=192.168.44.1 net1
+e7cfb95946907ec00a2d487fbd2448c33c7967cba8f5998c136fd8f752485c6a
+u14@u14-VirtualBox:~$ ^[[200~docker network create --driver=bridge --subnet=192.168.39.0/24 --gateway=192.168.39.1 net2~
+docker: команда не найдена
+u14@u14-VirtualBox:~$ docker network create --driver=bridge --subnet=192.168.39.0/24 --gateway=192.168.39.1 net2
+5b59afe08edf31a7c9e4161c8b6a51554cf39446270accddcfa48b05cd97a8e8
+u14@u14-VirtualBox:~$ ^[[200~docker network create --driver=bridge --subnet=192.168.27.0/24 --gateway=192.168.27.1 net3
+docker: команда не найдена
+u14@u14-VirtualBox:~$ docker network create --driver=bridge --subnet=192.168.27.0/24 --gateway=192.168.27.1 net3
+a568a16837af8f6e41a9b55c5d0cc6172485c90f55d177a15e4428e5f361303d
+u14@u14-VirtualBox:~$ docker network create --driver=bridge --subnet=192.168.10.0/24 --gateway=192.168.10.1 net4
+4486b317b7344868a76c32f5951617a4eac0abfb505147e42ae52891c2d111df
+u14@u14-VirtualBox:~$ docker network inspect net1docker network inspect net2
+[
+    {
+        "Name": "net2",
+        "Id": "5b59afe08edf31a7c9e4161c8b6a51554cf39446270accddcfa48b05cd97a8e8",
+        "Created": "2025-04-10T13:57:00.197643385+07:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "192.168.39.0/24",
+                    "Gateway": "192.168.39.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+Error response from daemon: network net1docker not found
+Error response from daemon: network network not found
+Error response from daemon: network inspect not found
+u14@u14-VirtualBox:~$ docker network inspect net3docker network inspect net4
+[
+    {
+        "Name": "net4",
+        "Id": "4486b317b7344868a76c32f5951617a4eac0abfb505147e42ae52891c2d111df",
+        "Created": "2025-04-10T13:57:38.782284536+07:00",
+        "Scope": "local",
+        "Driver": "bridge",
+        "EnableIPv4": true,
+        "EnableIPv6": false,
+        "IPAM": {
+            "Driver": "default",
+            "Options": {},
+            "Config": [
+                {
+                    "Subnet": "192.168.10.0/24",
+                    "Gateway": "192.168.10.1"
+                }
+            ]
+        },
+        "Internal": false,
+        "Attachable": false,
+        "Ingress": false,
+        "ConfigFrom": {
+            "Network": ""
+        },
+        "ConfigOnly": false,
+        "Containers": {},
+        "Options": {},
+        "Labels": {}
+    }
+]
+Error response from daemon: network net3docker not found
+Error response from daemon: network network not found
+Error response from daemon: network inspect not found
+u14@u14-VirtualBox:~$ docker run -d --name container11 --network net1 ubuntu sleep infinitydocker run -d --name container12 --network net1 ubuntu sleep infinity
+66a7c9482706870fcd4c350911dd1100ab167723c7ad6962ae77a36b6bc6c0ae
+u14@u14-VirtualBox:~$ docker run -d --name container21 --network net2 ubuntu sleep infinity
+ee30dde1a99d06030b87601d04e91dff01824441ccfcd7393422fb21f4375c30
+u14@u14-VirtualBox:~$ docker run -d --name container22 --network net2 ubuntu sleep
+622bdb6821b6bcbdebf4ce2f6a31183899be4ab911d2b95b9f951575701e69e9
+u14@u14-VirtualBox:~$ docker run -d --name container31 --network net3 ubuntu sleep
+45f0fef086622bf5da3dcb1ff5dd20b188dfc05c0fa6156456e327ab6f7105e5
+u14@u14-VirtualBox:~$ infinitydocker run -d --name container32 --network net3 ubuntu sleep infinity
+infinitydocker: команда не найдена
+u14@u14-VirtualBox:~$ docker run -d --name container32 --network net3 ubuntu sleep infinity
+d6a536c76a145c703d5b5a53054073a96fbf38b38bb0da9edb8bc126012d7c0b
+u14@u14-VirtualBox:~$ docker run -d --name container41 --network net4 ubuntu sleep infinity
+9592dbb324ae862352e015ad7e47538dd6a67ff5e7a052ae17eb0d295047159c
+u14@u14-VirtualBox:~$ docker run -d --name container42 --network net4 ubuntu sleep
+baef978a98c265852bd791c51b42156ce70f3f7adf50d63a1b48edf9409d975c
+u14@u14-VirtualBox:~$ docker inspect container11docker inspect container12
+[]
+Error: No such object: container11docker
+Error: No such object: inspect
+Error: No such object: container12
+u14@u14-VirtualBox:~$ docker inspect container21docker inspect container22
+[
+    {
+        "Id": "622bdb6821b6bcbdebf4ce2f6a31183899be4ab911d2b95b9f951575701e69e9",
+        "Created": "2025-04-10T07:00:59.385081802Z",
+        "Path": "sleep",
+        "Args": [],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 1,
+            "Error": "",
+            "StartedAt": "2025-04-10T07:01:03.317113271Z",
+            "FinishedAt": "2025-04-10T07:01:04.808769121Z"
+        },
+        "Image": "sha256:a04dc4851cbcbb42b54d1f52a41f5f9eca6a5fd03748c3f6eb2cbeb238ca99bd",
+        "ResolvConfPath": "/var/lib/docker/containers/622bdb6821b6bcbdebf4ce2f6a31183899be4ab911d2b95b9f951575701e69e9/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/622bdb6821b6bcbdebf4ce2f6a31183899be4ab911d2b95b9f951575701e69e9/hostname",
+        "HostsPath": "/var/lib/docker/containers/622bdb6821b6bcbdebf4ce2f6a31183899be4ab911d2b95b9f951575701e69e9/hosts",
+        "LogPath": "/var/lib/docker/containers/622bdb6821b6bcbdebf4ce2f6a31183899be4ab911d2b95b9f951575701e69e9/622bdb6821b6bcbdebf4ce2f6a31183899be4ab911d2b95b9f951575701e69e9-json.log",
+        "Name": "/container22",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "net2",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                24,
+                80
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "ID": "622bdb6821b6bcbdebf4ce2f6a31183899be4ab911d2b95b9f951575701e69e9",
+                "LowerDir": "/var/lib/docker/overlay2/edc5333f3bf7e77d7ef74e204c7215d6edf1ca948e3d1817547374b8b9537223-init/diff:/var/lib/docker/overlay2/f12ddbb053b924e5f3e1d7c855b2d76df2ca2f7a5ef546421373da090599e198/diff",
+                "MergedDir": "/var/lib/docker/overlay2/edc5333f3bf7e77d7ef74e204c7215d6edf1ca948e3d1817547374b8b9537223/merged",
+                "UpperDir": "/var/lib/docker/overlay2/edc5333f3bf7e77d7ef74e204c7215d6edf1ca948e3d1817547374b8b9537223/diff",
+                "WorkDir": "/var/lib/docker/overlay2/edc5333f3bf7e77d7ef74e204c7215d6edf1ca948e3d1817547374b8b9537223/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "622bdb6821b6",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "sleep"
+            ],
+            "Image": "ubuntu",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "net2": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "",
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "5b59afe08edf31a7c9e4161c8b6a51554cf39446270accddcfa48b05cd97a8e8",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "container22",
+                        "622bdb6821b6"
+                    ]
+                }
+            }
+        }
+    }
+]
+Error: No such object: container21docker
+Error: No such object: inspect
+u14@u14-VirtualBox:~$ infinitydocker run -d --name container12 --network net1 ubuntu sleep infinity
+infinitydocker: команда не найдена
+u14@u14-VirtualBox:~$ docker run -d --name container12 --network net1 ubuntu sleep infinity
+a168e25404c85145819391ed7b896a3e83ca300b95d9bf418dabe42fe9a5ee77
+u14@u14-VirtualBox:~$ docker inspect container31docker inspect container32
+[
+    {
+        "Id": "d6a536c76a145c703d5b5a53054073a96fbf38b38bb0da9edb8bc126012d7c0b",
+        "Created": "2025-04-10T07:02:32.840647613Z",
+        "Path": "sleep",
+        "Args": [
+            "infinity"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 7895,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2025-04-10T07:02:35.781489593Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:a04dc4851cbcbb42b54d1f52a41f5f9eca6a5fd03748c3f6eb2cbeb238ca99bd",
+        "ResolvConfPath": "/var/lib/docker/containers/d6a536c76a145c703d5b5a53054073a96fbf38b38bb0da9edb8bc126012d7c0b/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/d6a536c76a145c703d5b5a53054073a96fbf38b38bb0da9edb8bc126012d7c0b/hostname",
+        "HostsPath": "/var/lib/docker/containers/d6a536c76a145c703d5b5a53054073a96fbf38b38bb0da9edb8bc126012d7c0b/hosts",
+        "LogPath": "/var/lib/docker/containers/d6a536c76a145c703d5b5a53054073a96fbf38b38bb0da9edb8bc126012d7c0b/d6a536c76a145c703d5b5a53054073a96fbf38b38bb0da9edb8bc126012d7c0b-json.log",
+        "Name": "/container32",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "net3",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                24,
+                80
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "ID": "d6a536c76a145c703d5b5a53054073a96fbf38b38bb0da9edb8bc126012d7c0b",
+                "LowerDir": "/var/lib/docker/overlay2/a6988cabba991a6ade1e5655a6ad3abf32e59ff48991a2f7e7b777a2733e2964-init/diff:/var/lib/docker/overlay2/f12ddbb053b924e5f3e1d7c855b2d76df2ca2f7a5ef546421373da090599e198/diff",
+                "MergedDir": "/var/lib/docker/overlay2/a6988cabba991a6ade1e5655a6ad3abf32e59ff48991a2f7e7b777a2733e2964/merged",
+                "UpperDir": "/var/lib/docker/overlay2/a6988cabba991a6ade1e5655a6ad3abf32e59ff48991a2f7e7b777a2733e2964/diff",
+                "WorkDir": "/var/lib/docker/overlay2/a6988cabba991a6ade1e5655a6ad3abf32e59ff48991a2f7e7b777a2733e2964/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "d6a536c76a14",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "sleep",
+                "infinity"
+            ],
+            "Image": "ubuntu",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "c4d8c8bad63df02197fe0ac001016b392c3251a974474133d7bc9263c8e01639",
+            "SandboxKey": "/var/run/docker/netns/c4d8c8bad63d",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "net3": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "6a:69:ec:d0:6e:8b",
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "a568a16837af8f6e41a9b55c5d0cc6172485c90f55d177a15e4428e5f361303d",
+                    "EndpointID": "d45ca7428073fbcd6f6bc31a329ad56260200fd60de8578bdc69d967b6c560f2",
+                    "Gateway": "192.168.27.1",
+                    "IPAddress": "192.168.27.2",
+                    "IPPrefixLen": 24,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "container32",
+                        "d6a536c76a14"
+                    ]
+                }
+            }
+        }
+    }
+]
+Error: No such object: container31docker
+Error: No such object: inspect
+u14@u14-VirtualBox:~$ docker inspect container41docker inspect container42
+[
+    {
+        "Id": "baef978a98c265852bd791c51b42156ce70f3f7adf50d63a1b48edf9409d975c",
+        "Created": "2025-04-10T07:03:50.483687595Z",
+        "Path": "sleep",
+        "Args": [],
+        "State": {
+            "Status": "exited",
+            "Running": false,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 0,
+            "ExitCode": 1,
+            "Error": "",
+            "StartedAt": "2025-04-10T07:03:54.367022653Z",
+            "FinishedAt": "2025-04-10T07:03:56.598560537Z"
+        },
+        "Image": "sha256:a04dc4851cbcbb42b54d1f52a41f5f9eca6a5fd03748c3f6eb2cbeb238ca99bd",
+        "ResolvConfPath": "/var/lib/docker/containers/baef978a98c265852bd791c51b42156ce70f3f7adf50d63a1b48edf9409d975c/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/baef978a98c265852bd791c51b42156ce70f3f7adf50d63a1b48edf9409d975c/hostname",
+        "HostsPath": "/var/lib/docker/containers/baef978a98c265852bd791c51b42156ce70f3f7adf50d63a1b48edf9409d975c/hosts",
+        "LogPath": "/var/lib/docker/containers/baef978a98c265852bd791c51b42156ce70f3f7adf50d63a1b48edf9409d975c/baef978a98c265852bd791c51b42156ce70f3f7adf50d63a1b48edf9409d975c-json.log",
+        "Name": "/container42",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "net4",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                24,
+                80
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "GraphDriver": {
+            "Data": {
+                "ID": "baef978a98c265852bd791c51b42156ce70f3f7adf50d63a1b48edf9409d975c",
+                "LowerDir": "/var/lib/docker/overlay2/96196109619d99dda79309c770715871d859e93025cc7aa8e90ca8a2f35cb69c-init/diff:/var/lib/docker/overlay2/f12ddbb053b924e5f3e1d7c855b2d76df2ca2f7a5ef546421373da090599e198/diff",
+                "MergedDir": "/var/lib/docker/overlay2/96196109619d99dda79309c770715871d859e93025cc7aa8e90ca8a2f35cb69c/merged",
+                "UpperDir": "/var/lib/docker/overlay2/96196109619d99dda79309c770715871d859e93025cc7aa8e90ca8a2f35cb69c/diff",
+                "WorkDir": "/var/lib/docker/overlay2/96196109619d99dda79309c770715871d859e93025cc7aa8e90ca8a2f35cb69c/work"
+            },
+            "Name": "overlay2"
+        },
+        "Mounts": [],
+        "Config": {
+            "Hostname": "baef978a98c2",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+            ],
+            "Cmd": [
+                "sleep"
+            ],
+            "Image": "ubuntu",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": null,
+            "OnBuild": null,
+            "Labels": {
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "NetworkSettings": {
+            "Bridge": "",
+            "SandboxID": "",
+            "SandboxKey": "",
+            "Ports": {},
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "",
+            "Gateway": "",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "",
+            "IPPrefixLen": 0,
+            "IPv6Gateway": "",
+            "MacAddress": "",
+            "Networks": {
+                "net4": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "",
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "4486b317b7344868a76c32f5951617a4eac0abfb505147e42ae52891c2d111df",
+                    "EndpointID": "",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "container42",
+                        "baef978a98c2"
+                    ]
+                }
+            }
+        }
+    }
+]
+Error: No such object: container41docker
+Error: No such object: inspect
+u14@u14-VirtualBox:~$ docker exec -it container11 ping -c 3 192.168.44.1docker exec -it container11 ping -c 3 container12
+Error response from daemon: container 66a7c9482706870fcd4c350911dd1100ab167723c7ad6962ae77a36b6bc6c0ae is not running
+u14@u14-VirtualBox:~$ docker exec -it container21 ping -c 3 192.168.39.1docker exec -it container21 ping -c 3 container22
+OCI runtime exec failed: exec failed: unable to start container process: exec: "ping": executable file not found in $PATH: unknown
+u14@u14-VirtualBox:~$ docker exec -it container11 traceroute container21
+Error response from daemon: container 66a7c9482706870fcd4c350911dd1100ab167723c7ad6962ae77a36b6bc6c0ae is not running
+u14@u14-VirtualBox:~$ docker exec -it container11 traceroute container22
+Error response from daemon: container 66a7c9482706870fcd4c350911dd1100ab167723c7ad6962ae77a36b6bc6c0ae is not running
+u14@u14-VirtualBox:~$ docker exec -it container11 ping -c 3 192.168.44.1
+Error response from daemon: container 66a7c9482706870fcd4c350911dd1100ab167723c7ad6962ae77a36b6bc6c0ae is not running
+u14@u14-VirtualBox:~$ docker network connect net2 container11docker network connect net3 container2
+docker: 'docker network connect' requires 2 arguments
+
+Usage:  docker network connect [OPTIONS] NETWORK CONTAINER
+
+Run 'docker network connect --help' for more information
+u14@u14-VirtualBox:~$ docker network connect net4 container31docker network connect net1 container41
+docker: 'docker network connect' requires 2 arguments
+
+Usage:  docker network connect [OPTIONS] NETWORK CONTAINER
+
+Run 'docker network connect --help' for more information
+u14@u14-VirtualBox:~$ docker exec -it container11 ping -c 3 container22docker exec -it container21 ping -c 3 container32
+Error response from daemon: container 66a7c9482706870fcd4c350911dd1100ab167723c7ad6962ae77a36b6bc6c0ae is not running
+u14@u14-VirtualBox:~$ docker exec -it container31 ping -c 3 container42docker exec -it container41 ping -c 3 container12
+Error response from daemon: container 45f0fef086622bf5da3dcb1ff5dd20b188dfc05c0fa6156456e327ab6f7105e5 is not running
+u14@u14-VirtualBox:~$ docker run -d --name apache-container --network net1 -p 8080:80 httpd:alpin
+Unable to find image 'httpd:alpin' locally
+docker: Error response from daemon: manifest for httpd:alpin not found: manifest unknown: manifest unknown
+
+Run 'docker run --help' for more information
+u14@u14-VirtualBox:~$ docker run -d --name nginx-container --network net2 -p 8090:80 nginx:alpine
+Unable to find image 'nginx:alpine' locally
+alpine: Pulling from library/nginx
+f18232174bc9: Already exists 
+ccc35e35d420: Pull complete 
+43f2ec460bdf: Pull complete 
+984583bcf083: Pull complete 
+8d27c072a58f: Pull complete 
+ab3286a73463: Pull complete 
+6d79cc6084d4: Pull complete 
+0c7e4c092ab7: Pull complete 
+Digest: sha256:4ff102c5d78d254a6f0da062b3cf39eaf07f01eec0927fd21e219d0af8bc0591
+Status: Downloaded newer image for nginx:alpine
+d19c891eb19650366912ba95514b855148a61d5bda36609b50c8da2c7e6ea77a
+u14@u14-VirtualBox:~$ docker exec -it container11 ping -c 3 container12docker exec -it container21 ping -c 3 container22
+Error response from daemon: container 66a7c9482706870fcd4c350911dd1100ab167723c7ad6962ae77a36b6bc6c0ae is not running
+u14@u14-VirtualBox:~$ docker exec -it container11 apt-get update && apt-get install 
+Error response from daemon: container 66a7c9482706870fcd4c350911dd1100ab167723c7ad6962ae77a36b6bc6c0ae is not running
+u14@u14-VirtualBox:~$ 
